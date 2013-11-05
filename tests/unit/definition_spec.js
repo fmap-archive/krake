@@ -6,13 +6,7 @@ var _          = require('underscore');
 describe("definition.expand()", function() {
   var expand = definition.expand;
 
-  it("Should return tasks without list URL properties as they are.", function() {
-    var without  = fixtures.task1;
-    var expanded = expand(without);
-    expect(expanded).toEqual(without);
-  });
-
-  it("Should return a list of new tasks when given a task with list URL properties.", function(){
+  it("Should return a list", function(){
     var has = fixtures.task2;
     var expanded = expand(has);
     expect(expanded.constructor).toEqual(Array);
