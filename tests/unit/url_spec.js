@@ -1,11 +1,11 @@
 var root       = __dirname + '/../../';
-var definition = require(root + 'lib/krake/definition');
+var url        = require(root + 'lib/krake/url');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
 
 describe("definition#normalise", function() {
   _.each(fixtures, function(fixture) {
-    var normalised = definition.normalise(fixture);
+    var normalised = url.normalise(fixture);
     it("Should return a list of tasks with string url properties", function() {
       expect(true).toBe(true);
       expect(normalised.constructor).toEqual(Array);
