@@ -3,9 +3,10 @@ var url        = require(root + 'lib/krake/url');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
 
-describe("definition#normalise", function() {
-  _.each(fixtures, function(fixture) {
-    var normalised = url.normalise(fixture);
+describe("url#normalise", function() {
+  var tasks = [fixtures.patterned_url, fixtures.list_url];
+  _.each(tasks, function(task) {
+    var normalised = url.normalise(task);
     it("Should return a list of tasks with string url properties", function() {
       expect(true).toBe(true);
       expect(normalised.constructor).toEqual(Array);
