@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Declarative web scraping.",
   "dependencies": {
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "grunt": "0.4.1",
