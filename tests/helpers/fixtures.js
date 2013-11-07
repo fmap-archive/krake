@@ -1,4 +1,4 @@
 module.exports = {
-  task1: require('../fixtures/task1.js'),
-  task2: require('../fixtures/task2.js')
+  list_url: require('../fixtures/list_url.js'),
+  patterned_url: require('../fixtures/patterned_url.js')
 };
