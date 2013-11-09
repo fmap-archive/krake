@@ -2,7 +2,7 @@ var root       = __dirname + '/../../';
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
 var jsdom      = require('jsdom');
-var xpath      = require(root + 'lib/krake/helpers').xpath.xpath;
+var xpath      = require(root + 'lib/xpath').xpath;
 
 describe("xpath#xpath", function() {
   it("Should return a list of objects", function(done) {
