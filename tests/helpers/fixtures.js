@@ -9,5 +9,6 @@ module.exports = {
   list_url: require('../fixtures/list_url.js'),
   patterned_url: require('../fixtures/patterned_url.js'),
   kittens: kittens,
-  simple: require('../fixtures/simple.js')
+  simple: require('../fixtures/simple.js'),
+  simple_with_fn: require('../fixtures/simple_with_fn.js')
 };
