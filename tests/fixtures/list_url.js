@@ -9,11 +9,11 @@ module.exports =
     ]
 , cols:
     [ { desc: "title"
-      , sel: "//img[@class='pc_img ']" // XPath or CSS.
+      , sel: "//img[contains(@class,'pc_img')]" // XPath or CSS.
       , attr: "alt"
       }
     , { desc: "image"
-      , sel: "//img[@class='pc_img ']"
+      , sel: "//img[contains(@class,'pc_img')]"
       , attr: "src"
       , fn: function(str) {return str.replace(/(\.[a-z]+)$/,/_b$1/);} 
       } 

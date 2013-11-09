@@ -8,8 +8,10 @@ describe("url#normalise", function() {
   _.each(tasks, function(task) {
     var normalised = url.normalise(task);
     it("Should return a list of tasks with string url properties", function() {
-      expect(true).toBe(true);
       expect(normalised.constructor).toEqual(Array);
+      _.each(normalised, function(task) {
+        expect(task.url.constructor).toBe(String);
+      });
     });
     it("Said tasks should have urls constructed from permutations of 'non-pattern' properties substituted into 'pattern'..", function() {
       var permutations = [
