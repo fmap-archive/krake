@@ -5,7 +5,7 @@ var jsdom      = require('jsdom');
 var xpath      = require(root + 'lib/krake/helpers').xpath.xpath;
 
 describe("xpath#xpath", function() {
-  it("Should return a list of objects", function() {
+  it("Should return a list of objects", function(done) {
     var html  = fixtures.kittens;
     var query = "//a[contains(@class,'photo-click')]";
     jsdom.env(html, [], function(err, window) {
@@ -14,6 +14,7 @@ describe("xpath#xpath", function() {
       _.map(results, function(result) {
         expect(result.constructor).toEqual(Object);
       });
+      done();
     });
   });
 });
