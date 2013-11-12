@@ -2,56 +2,28 @@ var root       = __dirname + '/../../';
 var cols       = require(root + 'lib/krake/cols');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
+var events     = require('events');
 
 describe("cols#zip", function() {
   var task = fixtures.simple;
-  var taskKeys = ["title", "image", "owner", "page"];
-  var someZipped = [ 
-    { title: 'kitten hug',
-      image: 'https://s.yimg.com/pw/images/spaceball.gif',
-      owner: 'rodrigotrovao',
-      page: '/photos/rodrigotrovao/4245998404/' 
-    },
-    { title: 'Kitten!',
-      image: 'https://s.yimg.com/pw/images/spaceball.gif',
-      owner: 'adamjseidl',
-      page: '/photos/ajseidl/4981316470/' 
-    },
-    { title: 'Kittens!',
-      image: 'https://s.yimg.com/pw/images/spaceball.gif',
-      owner: 'beer_squirrel',
-      page: '/photos/beersquirrel/349671331/' 
-    } 
-  ];
-  it("should return a list of objects..", function(done) {
-    cols.cols(task, function(f) {
-      var zipped = cols.zip(f.cols);
-      expect(zipped.constructor).toEqual(Array);
-      _.each(zipped, function(rec) {
-        expect(rec.constructor).toEqual(Object);
+  it("should trigger the callback with objects..", function(done) {
+    cols.cols(task, function(t) {
+      cols.zip(t.cols, function(z) {
+        expect(z.constructor).toEqual(Object);
+        done(); // FIIIIIIRST
       });
-      done();
     });
   }, 20*1000);
-  it("each object including each of the task's keys..", function(done) {
-    cols.cols(task, function(f) {
-      var zipped = cols.zip(f.cols);
-      _.each(zipped, function(rec) {
-        var keys = _.keys(rec);
-        _.each(taskKeys, function(key) {
-          expect(keys).toContain(key);
+  it("each of which should include each column desc as a key", function(done) {
+    cols.cols(task, function(t) {
+      cols.zip(t.cols, function(z) {
+        zipKeys = _.keys(z);
+        descs = _.pluck(t.cols, 'desc');
+        _.each(descs, function(key){
+          expect(zipKeys).toContain(key);
         });
+        done(); // FIIIIIIRST
       });
-      done();
-    });
-  }, 20*1000);
-  it("the values being the page's processed, retrieved data..", function(done) {
-    cols.cols(task, function(f) {
-      var zipped = cols.zip(f.cols);
-      _.each(someZipped, function(e) {
-        expect(zipped).toContain(e);
-      });
-      done();
     });
   }, 20*1000);
 });
