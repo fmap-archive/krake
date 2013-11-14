@@ -10,7 +10,10 @@ module.exports = function (grunt) {
       jshintrc: '.jshintrc',
       src: [
         'lib/**/*.js'
-      ]
+      ],
+      options: {
+        '-W085': true // Don't use 'with'
+      }
     }
   };
 };
