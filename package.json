@@ -5,7 +5,8 @@
   "dependencies": {
     "underscore": "~1.5.2",
     "jsdom": "~0.8.8",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "typeclasses": "git://github.com/fmap/typeclasses.js"
   },
   "devDependencies": {
     "grunt": "0.4.1",
