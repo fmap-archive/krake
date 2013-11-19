@@ -6,7 +6,8 @@
     "underscore": "~1.5.2",
     "jsdom": "~0.8.8",
     "request": "~2.27.0",
-    "typeclasses": "git://github.com/fmap/typeclasses.js"
+    "typeclasses": "git://github.com/fmap/typeclasses.js",
+    "upcast": "~1.0.3"
   },
   "devDependencies": {
     "grunt": "0.4.1",

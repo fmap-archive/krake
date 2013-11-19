@@ -2,7 +2,6 @@ var root       = __dirname + '/../../';
 var cols       = require(root + 'lib/krake/cols');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
-var events     = require('events');
 
 describe("cols#zip", function() {
   var task = fixtures.simple;

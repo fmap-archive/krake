@@ -1,8 +1,8 @@
-var root       = __dirname + '/../../';
-var Krake      = require(root + 'lib/krake');
-var cols       = require(root + 'lib/krake/cols');
-var fixtures   = require(root + 'tests/helpers/fixtures');
-var typecheck  = require(root + 'lib/typecheck');
+var root     = __dirname + '/../../';
+var Krake    = require(root + 'lib/krake');
+var cols     = require(root + 'lib/krake/cols');
+var fixtures = require(root + 'tests/helpers/fixtures');
+var events   = require('events');
 
 describe("Krake#scrape", function() {
   beforeEach(function() {
@@ -12,8 +12,7 @@ describe("Krake#scrape", function() {
   });
   it("Should return an emitter.", function(){
     var emitter = new Krake().scrape(fixtures.simple_with_fn);
-    var type = typecheck.type(emitter);
-    expect(type).toEqual("EventEmitter");
+    expect(emitter.constructor).toEqual(events.EventEmitter);
   });
   it("Should send 'retrieved' messages to the emitter when results have been retrieved, with an object as message.", function(done) {
     var emitter = new Krake().scrape(fixtures.simple_with_fn);
