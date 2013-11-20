@@ -1,8 +1,11 @@
 var root     = __dirname + '/../../';
 var Krake    = require(root + 'lib/krake');
+var url      = require(root + 'lib/krake/url');
 var cols     = require(root + 'lib/krake/cols');
 var fixtures = require(root + 'tests/helpers/fixtures');
 var events   = require('events');
+
+// createChannel 
 
 describe("Krake#scrape", function() {
   beforeEach(function() {
@@ -21,4 +24,11 @@ describe("Krake#scrape", function() {
       done(); // Test first received.
     });
   }, 20*1000);
+  it("Should create a channel for each subtask.", function() {
+    spyOn(cols, 'createChannel');
+    var emitter = new Krake().scrape(fixtures.list_url);
+    url.normalise(fixtures.list_url).forEach(function(subtask){
+      expect(cols.createChannel).toHaveBeenCalledWith(subtask, emitter);
+    });
+  });
 });
