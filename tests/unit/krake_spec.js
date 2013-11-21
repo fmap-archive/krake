@@ -5,8 +5,6 @@ var cols     = require(root + 'lib/krake/cols');
 var fixtures = require(root + 'tests/helpers/fixtures');
 var events   = require('events');
 
-// createChannel 
-
 describe("Krake#scrape", function() {
   beforeEach(function() {
     spyOn(cols, 'get').andCallFake(function(i, callback) {
@@ -23,12 +21,17 @@ describe("Krake#scrape", function() {
       expect(res.constructor).toEqual(Object);
       done(); // Test first received.
     });
-  }, 20*1000);
-  it("Should create a channel for each subtask.", function() {
-    spyOn(cols, 'createChannel');
-    var emitter = new Krake().scrape(fixtures.list_url);
-    url.normalise(fixtures.list_url).forEach(function(subtask){
-      expect(cols.createChannel).toHaveBeenCalledWith(subtask, emitter);
+  }, 2e4);
+  it("Should send a 'completed' message to the emitter once all results have been retrieved", function(done) {
+    var emitter = new Krake().scrape(fixtures.simple_with_fn);
+    emitter.addListener('completed', function() {
+      done(); // On fail, will hang indefinitely..? TODO
     });
+  }, 2e4);
+  it("Should send each subtask to createChannels.", function() {
+    spyOn(cols, 'createChannels');
+    var emitter = new Krake().scrape(fixtures.list_url);
+    var normalised = url.normalise(fixtures.list_url);
+    expect(cols.createChannels).toHaveBeenCalledWith(normalised, emitter);
   });
 });
