@@ -7,7 +7,6 @@
     "jsdom": "~0.8.8",
     "request": "~2.27.0",
     "typeclasses": "git://github.com/fmap/typeclasses.js",
-    "upcast": "~1.0.3",
     "jsdom-xpath": "git://github.com/fmap/jsdom-xpath.git"
   },
   "devDependencies": {
