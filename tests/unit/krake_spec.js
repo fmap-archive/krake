@@ -1,9 +1,9 @@
-var root     = __dirname + '/../../';
-var Krake    = require(root + 'lib/krake');
-var url      = require(root + 'lib/krake/url');
-var cols     = require(root + 'lib/krake/cols');
-var fixtures = require(root + 'tests/helpers/fixtures');
-var events   = require('events');
+var root      = __dirname + '/../../';
+var Krake     = require(root + 'lib/krake');
+var normalise = require(root + 'lib/krake/normalise');
+var cols      = require(root + 'lib/krake/cols');
+var fixtures  = require(root + 'tests/helpers/fixtures');
+var events    = require('events');
 
 describe("Krake#scrape", function() {
   beforeEach(function() {
@@ -31,7 +31,7 @@ describe("Krake#scrape", function() {
   it("Should send each subtask to createChannels.", function() {
     spyOn(cols, 'createChannels');
     var emitter = new Krake().scrape(fixtures.list_url);
-    var normalised = url.normalise(fixtures.list_url);
+    var normalised = normalise(fixtures.list_url);
     expect(cols.createChannels).toHaveBeenCalledWith(normalised, emitter);
   });
 });
