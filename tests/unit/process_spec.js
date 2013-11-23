@@ -1,21 +1,21 @@
 var root       = __dirname + '/../../';
-var cols       = require(root + 'lib/krake/cols');
+var process       = require(root + 'lib/krake/process');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
 
-describe("cols#zip", function() {
+describe("process#zip", function() {
   var task = fixtures.simple;
   it("should trigger the callback with objects..", function(done) {
-    cols.cols(task, function(t) {
-      cols.zip(t.cols, function(z) {
+    process.cols(task, function(t) {
+      process.zip(t.cols, function(z) {
         expect(z.constructor).toEqual(Object);
         done(); // FIIIIIIRST
       });
     });
   }, 20*1000);
   it("each of which should include each column desc as a key", function(done) {
-    cols.cols(task, function(t) {
-      cols.zip(t.cols, function(z) {
+    process.cols(task, function(t) {
+      process.zip(t.cols, function(z) {
         zipKeys = _.keys(z);
         descs = _.pluck(t.cols, 'desc');
         _.each(descs, function(key){
@@ -27,10 +27,10 @@ describe("cols#zip", function() {
   }, 20*1000);
 });
   
-describe("cols#cols", function() {
+describe("process#cols", function() {
   var someTitles;
   beforeEach(function(){
-    spyOn(cols, 'get').andCallFake(function(i, callback) {
+    spyOn(process, 'get').andCallFake(function(i, callback) {
       callback(false, false, fixtures.kitten);
     });
     someTitles = [
@@ -47,7 +47,7 @@ describe("cols#cols", function() {
     ];
   });
   it("Should attach a 'nodes' attribute to each parameter, a list of strings", function(done){
-    cols.cols(fixtures.simple, function(attributed) {
+    process.cols(fixtures.simple, function(attributed) {
       _.each(attributed.cols, function(col) {
         expect(col.nodes.constructor).toEqual(Array);
         _.each(col.nodes, function(node) {
@@ -58,7 +58,7 @@ describe("cols#cols", function() {
     });
   }, 20*1000);
   it("Said strings should correspond to content described by the included xml selectors..", function(done){
-    cols.cols(fixtures.simple, function(attributed) {
+    process.cols(fixtures.simple, function(attributed) {
       var titles = attributed.cols[0].nodes;
       _.each(someTitles, function(title) {
         expect(titles).toContain(title);
@@ -67,7 +67,7 @@ describe("cols#cols", function() {
     });
   }, 20*1000);
   it("Retrieved data should be post-processed with str. functions, if provided", function(done){
-    cols.cols(fixtures.simple_with_fn, function(attributed) {
+    process.cols(fixtures.simple_with_fn, function(attributed) {
       var titles = attributed.cols[0].nodes;
       var transformedTitles = _.map(someTitles, attributed.cols[0].fn);
       _.each(transformedTitles, function(title) {
@@ -78,9 +78,9 @@ describe("cols#cols", function() {
   }, 20*1000);
 });
 
-describe("cols: attr, nested", function() {
+describe("process: attr, nested", function() {
   it("missing attr", function(done){
-    cols.cols(fixtures.simple_no_attr, function(attributed) {
+    process.cols(fixtures.simple_no_attr, function(attributed) {
       var node = attributed.cols[0].nodes[0];
       expect(node.constructor).toEqual(String);
       expect(node).toMatch(/kittens/i);
@@ -88,7 +88,7 @@ describe("cols: attr, nested", function() {
     });
   }, 2e5);
   it("nested tasks", function(done){
-    cols.cols(fixtures.simple_recursive, function(attributed) {
+    process.cols(fixtures.simple_recursive, function(attributed) {
       var nodes = attributed.cols[0].nodes;
         expect(nodes.constructor).toEqual(Array);
         _.each(nodes.slice(0,2), function(node) {

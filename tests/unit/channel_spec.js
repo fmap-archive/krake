@@ -1,12 +1,12 @@
 var root         = __dirname + '/../../';
-var cols         = require(root + 'lib/krake/cols');
+var process      = require(root + 'lib/krake/process');
 var channel      = require(root + 'lib/krake/channel');
 var EventEmitter = require('events').EventEmitter;
 
 describe("channel", function() {
   beforeEach(function() {
     ['cols','zip'].forEach(function(f) {
-      spyOn(cols,f).andCallFake(function(task, callback) {
+      spyOn(process,f).andCallFake(function(task, callback) {
         callback(42);
       });
     });
