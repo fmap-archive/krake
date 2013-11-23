@@ -26,7 +26,7 @@ describe("cols#zip", function() {
     });
   }, 20*1000);
 });
-
+  
 describe("cols#cols", function() {
   var someTitles;
   beforeEach(function(){
@@ -76,4 +76,28 @@ describe("cols#cols", function() {
       done();
     });
   }, 20*1000);
+});
+
+describe("cols: attr, nested", function() {
+  it("missing attr", function(done){
+    cols.cols(fixtures.simple_no_attr, function(attributed) {
+      var node = attributed.cols[0].nodes[0];
+      expect(node.constructor).toEqual(String);
+      expect(node).toMatch(/kittens/i);
+      done();
+    });
+  }, 2e5);
+  it("nested tasks", function(done){
+    cols.cols(fixtures.simple_recursive, function(attributed) {
+      var nodes = attributed.cols[0].nodes;
+        expect(nodes.constructor).toEqual(Array);
+        _.each(nodes.slice(0,2), function(node) {
+          expect(node.constructor).toEqual(Object);
+          expect(node.url.constructor).toEqual(String);
+          expect(node.cols.constructor).toEqual(Array);
+          expect(node.cols[0].nodes.constructor).toEqual(Array);
+        });
+      done();
+    });
+  }, 8e4);
 });
