@@ -1,0 +1,19 @@
+{
+  "name": "krake",
+  "version": "0.0.0",
+  "description": "Declarative web scraping.",
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "jsdom": "~0.8.8",
+    "request": "~2.27.0",
+    "typeclasses": "git://github.com/fmap/typeclasses.js",
+    "jsdom-xpath": "git://github.com/fmap/jsdom-xpath.git"
+  },
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-jasmine-node": "git://github.com/fmap/grunt-jasmine-node-multitask.git#multitask",
+    "grunt-contrib-jshint": "0.6.4",
+    "load-grunt-config": "0.5.0"
+  }
+}
