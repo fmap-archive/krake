@@ -1,5 +1,6 @@
 var root       = __dirname + '/../../';
-var process       = require(root + 'lib/krake/process');
+var process    = require(root + 'lib/krake/process');
+var utils      = require(root + 'lib/krake/utils');
 var fixtures   = require(root + 'tests/helpers/fixtures');
 var _          = require('underscore');
 
@@ -26,13 +27,13 @@ describe("process#zip", function() {
     });
   }, 20*1000);
 });
-  
+
 describe("process#cols", function() {
   var someTitles;
   beforeEach(function(){
-    spyOn(process, 'get').andCallFake(function(i, callback) {
-      callback(false, false, fixtures.kitten);
-    });
+//  spyOn(utils, 'get').andCallFake(function(i, callback) {
+//    callback(false, false, fixtures.kitten);
+//  });
     someTitles = [
       'Kitten Love',
       'The Magic Kitten',
