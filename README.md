@@ -55,7 +55,7 @@ retrieved:
 
 ```javascript
 > var Krake = require('krake');
-> new Krake({}).scrape(task).on('retrieved', console.log).on('complete',  close(this));
+> new Krake({}).scrape(task).on('retrieved', console.log)
                             .on('complete', function(){this.removeAllListeners()});
 { title: 'The Magic Kitten',
   image: 'https://farm3.staticflickr.com/2346/2250708458_2ea01e630d_b.jpg',
