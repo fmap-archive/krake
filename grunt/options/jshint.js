@@ -12,7 +12,8 @@ module.exports = function (grunt) {
         'lib/**/*.js'
       ],
       options: {
-        '-W085': true // Don't use 'with'
+        '-W085': true, // Don't use 'with'
+        '-W030': true // top-level expression
       }
     }
   };
