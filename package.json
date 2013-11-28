@@ -1,6 +1,6 @@
 {
   "name": "krake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Declarative web scraping.",
   "main": "./lib/krake",
   "dependencies": {
