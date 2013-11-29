@@ -21,7 +21,11 @@ that representation looks close to:
 
 ```javascript
 > var task = 
-  { url: 'https://www.flickr.com/search/?q=kitten&l=deriv'
+  { url: 
+    { pattern: "https://www.flickr.com/search/?q=@keywords@&l=@licenses@"
+    , keywords: ["kitten", "cat", "meow"]
+    , licenses: ["comm", "deriv"]
+    }
   , cols: 
      [ { desc: 'title'
        , sel: "//img[contains(@id,'photo_img_')]"
@@ -55,23 +59,21 @@ retrieved:
 
 ```javascript
 > var Krake = require('krake');
-> new Krake({}).scrape(task).on('retrieved', console.log)
-                            .on('complete', function(){this.removeAllListeners()});
-{ title: 'The Magic Kitten',
-  image: 'https://farm3.staticflickr.com/2346/2250708458_2ea01e630d_b.jpg',
-  owner: 'craiglea123',
-  page: { description: '\n\t\t<p>A story about a magical kitten whose uncle stole the throne. When it\nwas really a lion cub and it was a king.</p>\n\t\t\t\t' } 
+> new Krake({}).scrape(task).on('retrieved', console.log);
+{ title: 'meow meow and the mouse',
+  image: 'https://farm5.staticflickr.com/4072/4217411837_05b4ba416f_b.jpg',
+  owner: 'megankhines',
+  page: { description: '\n\t\t<p>Kittens</p>\n\t\t\t\t' } 
 }
-{ title: 'Kitten of Lusy',
-  image: 'https://farm6.staticflickr.com/5171/5594694155_8cda95fcd4_b.jpg',
-  owner: 'Viola & Cats =^..^=',
-  page: { description: '\n\t\t<p>Last of 3 kitten of my Lusy, has two days.<br />What adorable !!!!!!!!</p><p><a href="http://flickriver.com/photos/tags/gattini/interesting/" rel="nofollow">flickriver.com/photos/tags/gattini/interesting/</a></p>\n\t\t\t\t' 
-} 
+{ title: 'meow meow',
+  image: 'https://farm1.staticflickr.com/26/50499021_cefc189a28_b.jpg',
+  owner: 'megankhines',
+  page: { description: '\n\t\t<p>Kittens</p>\n\t\t\t\t' } 
 }
-{ title: '"Kitten Geyser"',
-  image: 'https://farm7.staticflickr.com/6226/6248895206_b4a9be027e_b.jpg',
-  owner: 'Desa Windsinger',
-  page: { description: '\n\t\t<p>"Kitten Geyser", Geyser Hill Group, Upper Geyser Basin. \n(DSCN2922rev)</p>\n\t\t\t\t' } 
+{ title: 'Meow',
+  image: 'https://farm3.staticflickr.com/2543/3843401084_2495a1367d_b.jpg',
+  owner: 'mindy_g',
+  page: { description: '\n\t\t<p>Kittens</p>\n\t\t\t\t' } 
 }
 [..]
 ```
