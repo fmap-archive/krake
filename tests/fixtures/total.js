@@ -15,7 +15,7 @@ module.exports =
      , attr: 'title' 
      }
    , { desc: 'page'
-     , sel: "//a[contains(@class,'photo-click')]"
+     , sel: "a.photo-click"
      , attr: 'href'
      , cols: // A nested task, with supra referenced page as pattern.
          [ { desc: "description"

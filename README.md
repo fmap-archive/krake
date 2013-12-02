@@ -28,7 +28,7 @@ that representation looks close to:
     }
   , cols: 
      [ { desc: 'title'
-       , sel: "//img[contains(@id,'photo_img_')]"
+       , sel: "//img[contains(@id,'photo_img_')]" // XPath or CSS
        , attr: 'alt' 
        }
      , { desc: 'image'
@@ -41,7 +41,7 @@ that representation looks close to:
        , attr: 'title' 
        }
      , { desc: 'page'
-       , sel: "//a[contains(@class,'photo-click')]"
+       , sel: 'a.photo-click'
        , attr: 'href'
        , cols: // A nested task, with supra referenced page as pattern.
            [ { desc: "description"
