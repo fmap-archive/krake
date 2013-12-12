@@ -8,7 +8,8 @@
     "jsdom": "~0.8.8",
     "request": "~2.27.0",
     "typeclasses": "git://github.com/fmap/typeclasses.js",
-    "jsdom-xpath": "git://github.com/fmap/jsdom-xpath.git"
+    "jsdom-xpath": "git://github.com/fmap/jsdom-xpath.git",
+    "jquery": "~1.8.3"
   },
   "devDependencies": {
     "grunt": "0.4.1",
