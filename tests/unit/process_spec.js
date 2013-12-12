@@ -8,28 +8,28 @@ describe("process", function() {
     expect(process.constructor).toEqual(Function);
   });
 
-  var results = [], firstResult;
+  var results = [], lastResult;
 
-  runs(function(){
-    process(fixtures.total, function(result) {
-      results.push(result);
-      if (!firstResult){firstResult=result;}
-    });
+  process(fixtures.total, function(result, last) {
+    results.push(result);
+    if (last){lastResult=result;}
   });
 
-  waits(1e5); // :'(
+  waitsFor(function(){
+    return (typeof lastResult != 'undefined');
+  }, 'lastResult to be set.', 1e5); 
   
   it("The result should have zip structure.", function() {
-    [firstResult, firstResult.page].forEach(function(result) {
+    [lastResult, lastResult.page].forEach(function(result) {
       expect(result.constructor).toEqual(Object);
     });
-    var firstResultKeys = Object.keys(firstResult);
+    var lastResultKeys = Object.keys(lastResult);
     Object.keys(fixtures.total).forEach(function(key) {
-      expect (Object.keys(firstResult));
+      expect (Object.keys(lastResult));
     });
   });
   it("It should get strings using XPath selectors and 'attr'.", function() {
-    expect(firstResult.title.constructor).toEqual(String);
+    expect(lastResult.title.constructor).toEqual(String);
     expect(results.constructor).toEqual(Array);
     var someTitles = [
       'Kitten Love',
@@ -49,9 +49,9 @@ describe("process", function() {
     });
   });
   it("It should post-process attributions with `fn` when applicable.", function() {
-    expect(firstResult.image).toMatch(/_b\.[a-z]+$/);
+    expect(lastResult.image).toMatch(/_b\.[a-z]+$/);
   });
   it("It should use `innerHTML` when no `attr` is provided.", function() {
-    expect(firstResult.page.description).toMatch(/<p>/);
+    expect(lastResult.page.description).toMatch(/<p>/);
   });
 });

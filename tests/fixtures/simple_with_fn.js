@@ -4,7 +4,7 @@ module.exports =
    [ { desc: 'title'
      , sel: "//img[contains(@class,'pc_img')]"
      , attr: 'alt' 
-     , fn: function(str) { return str.toUpperCase; }
+     , fn: function(str) { return str.toUpperCase(); }
      }
    ] 
 }

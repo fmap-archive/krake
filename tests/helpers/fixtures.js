@@ -1,9 +1,13 @@
 var fs = require('fs');
 
-var kittens = function() {
-  var path = 'tests/fixtures/kittens.html';
+function readFile(path) {
   return fs.readFileSync(path).toString();
-}();
+}
+
+var flickr = {
+  index:  readFile('tests/fixtures/flickr/index.html'),
+  detail: readFile('tests/fixtures/flickr/detail.html') 
+};
 
 module.exports = {
   list_url:         require('../fixtures/list_url.js'),
@@ -13,5 +17,5 @@ module.exports = {
   simple_recursive: require('../fixtures/simple_recursive.js'),
   simple_no_attr:   require('../fixtures/simple_no_attr.js'),
   total:            require('../fixtures/total.js'),
-  kittens:          kittens,
+  flickr:           flickr
 };
